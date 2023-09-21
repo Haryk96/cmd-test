@@ -27,17 +27,18 @@ class CreateNestedDirNoParams(TestCase):
         `mkdir` should return exit code `1` in this case, as it should not be able to create nested directories
         without the '-p' parameter.
         """
+        dir_path = DirPaths.NESTED_DIR_PATH1
         returncode = run_cmd(
             "Test single NESTED dir creation without any parameters",
             EX_FAIL,
             self,
-            DirPaths.NESTED_DIR_PATH1,
+            dir_path,
         )
         self.assertFalse(
-            check_dir_exist(DirPaths.NESTED_DIR_PATH1),
+            check_dir_exist(dir_path),
             msg=(
                 f"'{MKDIR}' command returned exit code "
-                f"'{returncode}', but the directory '{DirPaths.NESTED_DIR_PATH1}' does exist."
+                f"'{returncode}', but the directory '{dir_path}' does exist."
             ),
         )
 
@@ -45,13 +46,17 @@ class CreateNestedDirNoParams(TestCase):
         """
         Test creating multiple nested directories without any parameters provided to `mkdir` command.
         """
+        dir_path1 = DirPaths.NESTED_DIRS[0]
+        dir_path2 = DirPaths.NESTED_DIRS[1]
+        dir_path3 = DirPaths.NESTED_DIRS[2]
+
         returncode = run_cmd(
             "Test many NESTED dir creation without any parameters",
             EX_FAIL,
             self,
-            DirPaths.NESTED_DIR_PATH1,
-            DirPaths.NESTED_DIR_PATH2,
-            DirPaths.NESTED_DIR_PATH3,
+            dir_path1,
+            dir_path2,
+            dir_path3,
         )
         for dir_path in DirPaths.NESTED_DIRS:
             self.assertFalse(

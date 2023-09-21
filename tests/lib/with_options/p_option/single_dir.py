@@ -28,16 +28,18 @@ class CreateSingleDirParentsOption(TestCase):
         This test should successfully create a directory.
         - test tries both variants of the parameter: `-p`, `--parents`
         """
+        dir_path = DirPaths.DIR_PATH
+
         for param in Params.PARENTS_VARIANTS:
-            returncode = run_cmd("Test SINGLE dir creation with `-p` parameter", EX_OK, self, param, DirPaths.DIR_PATH)
+            returncode = run_cmd("Test SINGLE dir creation with `-p` parameter", EX_OK, self, param, dir_path)
             self.assertTrue(
-                check_dir_exist(DirPaths.DIR_PATH),
+                check_dir_exist(dir_path),
                 msg=(
                     f"'{MKDIR}' command returned exit code "
-                    f"'{returncode}', but the directory '{DirPaths.DIR_PATH}' does not exist."
+                    f"'{returncode}', but the directory '{dir_path}' does not exist."
                 ),
             )
-            rmdir(DirPaths.DIR_PATH)
+            rmdir(dir_path)
 
     def test_p_param_many_args(self) -> None:
         """
@@ -45,19 +47,22 @@ class CreateSingleDirParentsOption(TestCase):
         This test should successfully create multiple directories.
         - test tries both variants of the parameter: `-p`, `--parents`
         """
+        dir_path = DirPaths.DIR_PATH
+        dir_path1 = DirPaths.DIR_PATH1
+        dir_path2 = DirPaths.DIR_PATH2
         for param in Params.PARENTS_VARIANTS:
             returncode = run_cmd(
                 "Test SINGLE dir creation with `-p` parameter",
                 EX_OK,
                 self,
                 param,
-                DirPaths.DIR_PATH,
+                dir_path,
                 param,
-                DirPaths.DIR_PATH1,
+                dir_path1,
                 param,
-                DirPaths.DIR_PATH2,
+                dir_path2,
             )
-        for dir in [DirPaths.DIR_PATH, DirPaths.DIR_PATH1, DirPaths.DIR_PATH2]:
+        for dir in [dir_path, dir_path1, dir_path2]:
             self.assertTrue(
                 check_dir_exist(dir),
                 msg=(

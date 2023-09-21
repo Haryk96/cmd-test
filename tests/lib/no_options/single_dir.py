@@ -27,12 +27,13 @@ class CreateSingleDirNoParams(TestCase):
 
         This test should successfully create a directory.
         """
-        returncode = run_cmd("Test SINGLE dir creation without any parameters", EX_OK, self, DirPaths.DIR_PATH)
+        dir_path = DirPaths.DIR_PATH
+        returncode = run_cmd("Test SINGLE dir creation without any parameters", EX_OK, self, dir_path)
         self.assertTrue(
-            check_dir_exist(DirPaths.DIR_PATH),
+            check_dir_exist(dir_path),
             msg=(
                 f"'{MKDIR}' command returned exit code "
-                f"'{returncode}', but the directory '{DirPaths.DIR_PATH}' does not exist."
+                f"'{returncode}', but the directory '{dir_path}' does not exist."
             ),
         )
 
@@ -40,34 +41,39 @@ class CreateSingleDirNoParams(TestCase):
         """
         Test creating a regular single directory and then try to create the same directory again.
         """
-        returncode = run_cmd("Test duplicit dir creation - create first directory", EX_OK, self, DirPaths.DIR_PATH4)
+        dir_path = DirPaths.DIR_PATH4
+        returncode = run_cmd("Test duplicit dir creation - create first directory", EX_OK, self, dir_path)
         self.assertTrue(
-            check_dir_exist(DirPaths.DIR_PATH4),
+            check_dir_exist(dir_path),
             msg=(
                 f"'{MKDIR}' command returned exit code "
-                f"'{returncode}', but the directory '{DirPaths.DIR_PATH4}' does exist."
+                f"'{returncode}', but the directory '{dir_path}' does exist."
             ),
         )
         returncode = run_cmd(
             "Test duplicit dir creation - create the previously created directory again",
             EX_FAIL,
             self,
-            DirPaths.DIR_PATH4,
+            dir_path,
         )
 
     def test_no_params_many_args(self) -> None:
         """
         Test creating many non-nested directories.
         """
+        dir_path1 = DirPaths.DIR_PATH1
+        dir_path2 = DirPaths.DIR_PATH2
+        dir_path3 = DirPaths.DIR_PATH3
+
         returncode = run_cmd(
             "Test many non-nested directories creation without any parameters",
             EX_OK,
             self,
-            DirPaths.DIR_PATH1,
-            DirPaths.DIR_PATH2,
-            DirPaths.DIR_PATH3,
+            dir_path1,
+            dir_path2,
+            dir_path3,
         )
-        for dir in [DirPaths.DIR_PATH1, DirPaths.DIR_PATH2, DirPaths.DIR_PATH3]:
+        for dir in [dir_path1, dir_path2, dir_path3]:
             self.assertTrue(
                 check_dir_exist(dir),
                 msg=(f"'{MKDIR}' command returned exit code " f"'{returncode}', but the directory '{dir}' does exist."),
@@ -75,10 +81,10 @@ class CreateSingleDirNoParams(TestCase):
 
     def test_no_params_ill_chars(self) -> None:
         """
-        Test creating single directories with illegal characters as names.
+        Test creating a single directory with an illegal character as name.
         """
         for char in ILLEGAL_CHARS:
-            run_cmd("Test creating single directories with illegal characters as names", EX_FAIL, self, char)
+            run_cmd("Test creating a single directory with an illegal character as name", EX_FAIL, self, char)
 
     def test_no_params_long_names(self) -> None:
         """

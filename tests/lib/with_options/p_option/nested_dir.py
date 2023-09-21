@@ -28,19 +28,21 @@ class CreateNestedDirParentsOption(TestCase):
         with the '-p' parameter.
         - test tries both variants of the parameter: `-p`, `--parents`
         """
+        dir_path = DirPaths.NESTED_DIR_PATH1
+
         for param in Params.PARENTS_VARIANTS:
             returncode = run_cmd(
                 f"Test single NESTED dir creation with '{param}' parameter",
                 EX_OK,
                 self,
                 param,
-                DirPaths.NESTED_DIR_PATH1,
+                dir_path,
             )
             self.assertFalse(
-                check_dir_exist(DirPaths.NESTED_DIR_PATH1),
+                check_dir_exist(dir_path),
                 msg=(
                     f"'{MKDIR}' command returned exit code "
-                    f"'{returncode}', but the directory '{DirPaths.NESTED_DIR_PATH1}' does exist."
+                    f"'{returncode}', but the directory '{dir_path}' does exist."
                 ),
             )
 
@@ -55,9 +57,9 @@ class CreateNestedDirParentsOption(TestCase):
                 EX_FAIL,
                 self,
                 param,
-                DirPaths.NESTED_DIR_PATH1,
-                DirPaths.NESTED_DIR_PATH2,
-                DirPaths.NESTED_DIR_PATH3,
+                DirPaths.NESTED_DIRS[0],
+                DirPaths.NESTED_DIRS[1],
+                DirPaths.NESTED_DIRS[2],
             )
             for dir_path in DirPaths.NESTED_DIRS:
                 self.assertTrue(

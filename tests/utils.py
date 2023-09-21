@@ -3,6 +3,10 @@ from typing import TextIO
 
 
 class ModifiedTestResult(TextTestResult):
+    """
+    Basically a method overload of the `TextTestResult` class from unittest lib
+    - only overload necessary method to partially fullfil assignment requirements
+    """
     def __init__(self, stream: TextIO, descriptions: bool, verbosity: int):
         super().__init__(stream, descriptions, verbosity)
         self.stream = stream

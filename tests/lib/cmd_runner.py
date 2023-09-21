@@ -21,6 +21,9 @@ def run_cmd(test_desc: str, exp_rc: int, test_case: TestCase, *args: str) -> int
     This function constructs and executes a command using the provided arguments. It captures the return code,
     compares it to the expected return code, and raises an assertion error if they do not match, along with a
     descriptive message.
+
+    What it hypothetically can do, but was chosen not to implement in the test:
+    - capture and assert a stdout or a stderr output
     """
     cmd = [MKDIR] + list(args)
     result = subprocess.run(args=cmd, capture_output=True)

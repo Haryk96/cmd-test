@@ -22,7 +22,7 @@ class CreateNestedDirParentsOption(TestCase):
 
     def test_p_param_nested_single_arg(self) -> None:
         """
-        Test creating a single nested directory without `-p` provided to `mkdir` command.
+        Test creating a single nested directory with `-p` provided to `mkdir` command.
 
         `mkdir` should return exit code `0` in this case, as it should be able to create nested directories
         with the '-p' parameter.

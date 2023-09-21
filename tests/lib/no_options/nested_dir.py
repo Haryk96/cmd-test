@@ -28,6 +28,7 @@ class CreateNestedDirNoParams(TestCase):
         without the '-p' parameter.
         """
         dir_path = DirPaths.NESTED_DIR_PATH1
+
         returncode = run_cmd(
             "Test single NESTED dir creation without any parameters",
             EX_FAIL,

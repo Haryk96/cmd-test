@@ -29,7 +29,7 @@ class DirPaths:
     """
     Paths to test directories
     - without nesting
-    - with nesting (3 level deep)
+    - with nesting (max 3 levels deep)
     """
 
     DIR_PATH = path.join(WD, DirNames.DIR_NAME)
@@ -49,6 +49,9 @@ class DirPaths:
 
 
 class Params:
+    """
+    Some of the available parameters to use with `mkdir` command
+    """
     PARENTS_SHORT = "-p"
     PARENTS_LONG = "--parents"
     PARENTS_VARIANTS = [PARENTS_SHORT, PARENTS_LONG]

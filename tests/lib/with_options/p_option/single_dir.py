@@ -50,6 +50,7 @@ class CreateSingleDirParentsOption(TestCase):
         dir_path = DirPaths.DIR_PATH
         dir_path1 = DirPaths.DIR_PATH1
         dir_path2 = DirPaths.DIR_PATH2
+
         for param in Params.PARENTS_VARIANTS:
             returncode = run_cmd(
                 "Test SINGLE dir creation with `-p` parameter",

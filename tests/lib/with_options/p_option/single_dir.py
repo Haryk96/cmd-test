@@ -29,12 +29,7 @@ class CreateSingleDirParentsOption(TestCase):
         - test tries both variants of the parameter: `-p`, `--parents`
         """
         for param in Params.PARENTS_VARIANTS:
-            returncode = run_cmd(
-                "Test SINGLE dir creation with `-p` parameter",
-                EX_OK,
-                self,
-                param,
-                DirPaths.DIR_PATH)
+            returncode = run_cmd("Test SINGLE dir creation with `-p` parameter", EX_OK, self, param, DirPaths.DIR_PATH)
             self.assertTrue(
                 check_dir_exist(DirPaths.DIR_PATH),
                 msg=(

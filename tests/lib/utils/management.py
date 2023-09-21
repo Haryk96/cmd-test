@@ -21,6 +21,7 @@ def check_dir_exist(*args) -> bool:
     absolute_path = path.join(*args)
     return path.isdir(absolute_path)
 
+
 def before_test_check(self: TestCase) -> None:
     """
     Check for directories which should not exist prior to a test run.
@@ -30,6 +31,7 @@ def before_test_check(self: TestCase) -> None:
         if check_dir_exist(abs_path):
             self.fail(f"Directory which should not exist is present on the system: '{abs_path}'")
 
+
 def after_test_check() -> None:
     """
     Check that there are no directories left after a test run.
@@ -38,13 +40,8 @@ def after_test_check() -> None:
         if path.exists(abs_path):
             shutil.rmtree(abs_path)
 
-def construct_exit_code_msg(
-        msg: str,
-        cmd: list[str],
-        expected: int,
-        actual: int,
-        stdout: bytes,
-        stderr: bytes) -> str:
+
+def construct_exit_code_msg(msg: str, cmd: list[str], expected: int, actual: int, stdout: bytes, stderr: bytes) -> str:
     """
     Construct an exit code message for assertion errors.
 
@@ -60,7 +57,7 @@ def construct_exit_code_msg(
     a descriptive message for assertion errors. It includes the provided message along with
     a comparison of the expected and actual exit codes.
     """
-    return  (
+    return (
         f"\n{msg}\n"
         "Command:\n"
         f"{' '.join(cmd)}\n"

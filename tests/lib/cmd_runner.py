@@ -33,6 +33,7 @@ def run_cmd(test_desc: str, exp_rc: int, test_case: TestCase, *args: str) -> int
             expected=exp_rc,
             actual=result.returncode,
             stdout=result.stdout,
-            stderr=result.stderr),
+            stderr=result.stderr,
+        ),
     )
     return result.returncode

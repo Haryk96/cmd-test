@@ -49,7 +49,10 @@ class CreateSingleDirNoParams(TestCase):
             ),
         )
         returncode = run_cmd(
-            "Test duplicit dir creation - create the previously created directory again", EX_FAIL, self, DirPaths.DIR_PATH4
+            "Test duplicit dir creation - create the previously created directory again",
+            EX_FAIL,
+            self,
+            DirPaths.DIR_PATH4,
         )
 
     def test_no_params_many_args(self) -> None:
@@ -67,10 +70,7 @@ class CreateSingleDirNoParams(TestCase):
         for dir in [DirPaths.DIR_PATH1, DirPaths.DIR_PATH2, DirPaths.DIR_PATH3]:
             self.assertTrue(
                 check_dir_exist(dir),
-                msg=(
-                    f"'{MKDIR}' command returned exit code "
-                    f"'{returncode}', but the directory '{dir}' does exist."
-                ),
+                msg=(f"'{MKDIR}' command returned exit code " f"'{returncode}', but the directory '{dir}' does exist."),
             )
 
     def test_no_params_ill_chars(self) -> None:
@@ -88,13 +88,10 @@ class CreateSingleDirNoParams(TestCase):
             "Test creating single directory which name is of maximum possible length.",
             EX_OK,
             self,
-            DirPaths.DIR_PATH_ON_LIMIT
+            DirPaths.DIR_PATH_ON_LIMIT,
         )
         run_cmd(
-            "Test creating single directory with a name that is too long.",
-            EX_FAIL,
-            self,
-            DirPaths.DIR_PATH_TOO_LONG
+            "Test creating single directory with a name that is too long.", EX_FAIL, self, DirPaths.DIR_PATH_TOO_LONG
         )
 
     def tearDown(self) -> None:

@@ -13,7 +13,6 @@ class CreateNestedDirParentsOption(TestCase):
     with the '-p' parameter. It verifies that the command should succeed, and the nested directories should be
     created.
     """
-    
 
     def setUp(self) -> None:
         """
